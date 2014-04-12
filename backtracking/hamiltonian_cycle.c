@@ -26,11 +26,31 @@ And the following graph doesn’t contain any Hamiltonian Cycle.
  
 */
 #include<stdio.h>
+#include<stdbool.h>
 
 #define V 5
 
-void hamilton(int graph[V][V]){
-    printf("%d", graph[4][4]);
+void hamilton(int graph[V][V], int nodes[V], int nodes_size){
+    if(nodes_size == V){
+        if(graph[nodes[nodes_size-1]][0] == 1){
+            for(int i=0; i<nodes_size; i++)
+                printf("%d ", nodes[i]);
+            printf("%d\n", 0);
+        }
+        return;
+    }
+    for(int i=0; i<V; i++){
+        if(graph[nodes[nodes_size-1]][i]==1){
+            bool not_seen=true;
+            for(int j=0; j<nodes_size; j++)
+                if(nodes[j] == i)
+                    not_seen = false;
+            if(not_seen){
+                nodes[nodes_size] = i;
+                hamilton(graph,nodes,nodes_size+1);
+            }
+        }
+    }
 }
 
 int main(){
@@ -42,6 +62,17 @@ int main(){
         {1, 1, 0, 0, 1},
         {0, 1, 1, 1, 0}
     };
-    hamilton(graph);
+    int nodes[V];
+    nodes[0] = 0;
+    hamilton(graph,nodes,1);
+    int graph2[V][V] =
+    {
+        {0, 1, 0, 1, 0},
+        {1, 0, 1, 1, 1},
+        {0, 1, 0, 0, 1},
+        {1, 1, 0, 0, 0},
+        {0, 1, 1, 0, 0},
+    };
+    hamilton(graph2,nodes,1);
     return 0;
 }
