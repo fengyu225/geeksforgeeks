@@ -9,3 +9,47 @@ Input:
 Output:
 An array color[V] that should have numbers from 1 to m. color[i] should represent the color assigned to the ith vertex. The code should also return false if the graph cannot be colored with m colors.
  */
+
+#include<stdio.h>
+#include<stdbool.h>
+
+#define V 4
+
+void m_color(int graph[V][V], int colors[V], int c_curr, int m){
+    if(c_curr == V){
+        for(int i=0; i<V; i++){
+            printf("nodes %d has color %d\n", i, colors[i]);
+        }
+        printf("\n");
+        return;
+    }
+    for(int i=1; i<=m ; i++){
+        bool safe = true;
+        for(int j=0; j<c_curr;  j++){
+            if(graph[j][c_curr] == 1 && colors[j] == i){
+                safe = false;
+                break;
+            }
+        }
+        if(safe){
+            colors[c_curr] = i;
+            m_color(graph, colors, c_curr+1, m);
+        }
+    }
+}
+
+
+
+int main(){
+    int graph[V][V] = 
+    {
+        {0, 1, 1, 1},
+        {1, 0, 1, 0},
+        {1, 1, 0, 1},
+        {1, 0, 1, 0},
+    };        
+    int colors[V] = {-1};
+    colors[0] = 1; 
+    m_color(graph, colors, 1, 3);
+    return 0;
+}
