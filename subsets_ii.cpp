@@ -1,6 +1,27 @@
 #include "header.h"
 
+void search(vector<int>& S, int curr, vector<int>& v, vector<vector<int> >& res){
+    if(curr == S.size()){
+        res.push_back(v);
+        return;
+    }
+    search(S,curr+1,v,res);
+    v.push_back(S[curr]);
+    int i=curr+1;
+    for(;i<S.size() && S[i] == S[i-1];i++) v.push_back(S[i]);
+    search(S,i,v,res);
+    i--;
+    while(i>=curr){
+        v.pop_back();
+        i--;
+    }
+}
+
 vector<vector<int> > subsetsWithDup(vector<int> &S) {
+    vector<vector<int> > res;
+    vector<int> v;
+    search(S,0,v,res);
+    return res;
 }
 
 int main(){
