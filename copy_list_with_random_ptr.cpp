@@ -16,6 +16,34 @@ void print_list(RandomListNode* root){
 
 
 RandomListNode *copyRandomList(RandomListNode *head) {
+    if(!head) return NULL;
+    RandomListNode* curr = head;
+    while(curr){
+        RandomListNode cp = new RandomListNode(curr->val);
+        cp->next = curr->next;
+        curr->next = cp;
+        curr = cp->next;
+    }
+    curr = head;
+    RandomListNode* res = curr->next;
+    while(curr){
+        if(curr->random)
+            curr->next->random = curr->random->next;
+        curr = curr->next->next;
+    }
+    curr = head;
+    while(curr){
+        RandomListNode* cp = curr->next;
+        curr->next = cp->next;
+        if(cp->next){
+            cp->next = cp->next->next;
+        }
+        else{
+            cp->next = NULL;
+        }
+        curr = curr->next;
+    }
+    return res;
 }
 
 
