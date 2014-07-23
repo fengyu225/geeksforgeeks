@@ -55,7 +55,7 @@ int main(){
     root->left->left->right->left = new TreeNode(13);
     root->left->left->right->right = new TreeNode(14);
     root->left->left->right->right->left = new TreeNode(15);
-    TreeNode* res = delete_nodes(root, 20);
+    TreeNode* res = delete_nodes(root, 45);
     if(!res)
         std::cout<<"NULL"<<std::endl;
     else
