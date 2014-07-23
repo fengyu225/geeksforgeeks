@@ -1,5 +1,8 @@
 #include "header.h"
 
+/*
+ * http://www.geeksforgeeks.org/find-a-pair-with-given-sum-in-bst/
+ */
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -83,13 +86,17 @@ int main(){
     TreeNode t4(12);
     TreeNode t5(16);
     TreeNode t6(25);
+    TreeNode t7(13);
+    TreeNode t8(17);
     t0.left = &t1;
     t0.right = &t2;
     t1.left = &t3;
     t1.right = &t4;
     t2.left = &t5;
     t2.right = &t6;
-    bool res = has_target_sum(&t0,27);
+    t4.right = &t7;
+    t5.right = &t8;
+    bool res = has_target_sum(&t0,32);
     printf("%s\n", res?"true":"false");
     return 0;
 }
