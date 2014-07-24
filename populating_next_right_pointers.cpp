@@ -17,23 +17,14 @@ void connect(TreeLinkNode* root){
                 curr_last = curr_last->next;
                 continue;
             }
-            if(curr_last->left){
+            if(curr_last->left || !curr_last->left && curr_last->right){
+                TreeLinkNode* x = curr_last->left?curr_last->left:curr_last->right;
                 if(head){
-                    curr->next = curr_last->left;
-                    curr = curr_last->left;
+                    curr->next = x;
+                    curr = x;
                 }
                 else{
-                    head = curr_last->left;
-                    curr = head;
-                }
-            }
-            if(curr_last->right && !curr_last->left){
-                if(head){
-                    curr->next = curr_last->right;
-                    curr = curr_last->right;
-                }
-                else{
-                    head = curr_last->right;
+                    head = x;
                     curr = head;
                 }
             }
