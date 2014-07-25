@@ -7,11 +7,18 @@
 int get_min_merge_cost(int coins[], int size){
     int arr[size][size+1];
     memset(arr,0,sizeof(arr));
-    for(int i=1; i<=size; i++){
+    for(int i=0; i<size; i++) arr[i][1] = coins[i];
+    for(int i=2; i<=size; i++){
         for(int j=0; j+i<=size;j++){
             int x = INT_MAX;
-
-    return 0;
+            for(int k=1;k<i;k++){
+                int m = arr[j][k]+arr[j+k][i-k];
+                x = std::min(m,x);
+            }
+            arr[j][i] = x;
+        }
+    }
+    return arr[0][size];
 }
 
 int main(){
