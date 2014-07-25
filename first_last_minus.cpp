@@ -45,15 +45,11 @@ ListNode* minus(ListNode* head){
     }
     ListNode* slow = head;
     ListNode* fast = head;
-    bool even = false;
     while(fast){
         fast = fast->next;
         if(!fast) break;
         fast = fast->next;
-        if(!fast){
-            even = true;
-            break;
-        }
+        if(!fast) break;
         slow = slow->next;
     }
     ListNode* x = slow->next;
@@ -76,7 +72,7 @@ ListNode* minus(ListNode* head){
 }
 
 int main(){
-    int arr[] = {1,2};
+    int arr[] = {3, 8, 1};
     ListNode* l = create_list(arr, sizeof(arr)/sizeof(arr[0]));
     ListNode* r = minus(l);
     while(r){
