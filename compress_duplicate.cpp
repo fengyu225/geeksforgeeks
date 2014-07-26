@@ -4,7 +4,7 @@ char* compress(char s[]){
     int size = strlen(s);
     int a=0,b=0;
     int dup = 0;
-    do{
+    while(b<=size){
         if(s[b] == s[a]){
             dup++;
             b++;
@@ -16,7 +16,7 @@ char* compress(char s[]){
         }
         dup = 0;
         a=b;
-    }while(b<=size);
+    }
     a=0;b=0;
     while(b<size){
         if(s[b] == '.') b++;
@@ -28,8 +28,8 @@ char* compress(char s[]){
 }
 
 int main(){
-    //char s[] = "aabbbccc";
-    char s[] = "abcdeee";
+    char s[] = "aabbbccc";
+//    char s[] = "abcdeee";
     cout<<compress(s)<<endl;
     return 0;
 }
