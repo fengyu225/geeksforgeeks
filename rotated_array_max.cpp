@@ -14,8 +14,7 @@ int find_max(int arr[], int size){
 }
 
 int main(){
-    //int arr[] = {4, 5, 6, 1, 2, 3};
-    int arr[] = {5, 4};
+    int arr[] = {5, 6, 1, 2, 3, 4};
     cout<<find_max(arr,sizeof(arr)/sizeof(arr[0]))<<endl;
     return 0;
 }
