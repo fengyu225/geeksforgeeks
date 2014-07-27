@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include "header.h"
+
 
 struct TreeLinkNode {
  int val;
@@ -9,37 +9,32 @@ struct TreeLinkNode {
 
 void connect(TreeLinkNode* root){
     TreeLinkNode* head = NULL;
-    TreeLinkNode* curr = NULL;
-    TreeLinkNode* curr_last = root;
+    TreeLinkNode* tail = NULL;
+    TreeLinkNode* last_curr = root;
     while(1){
-        if(curr_last){
-            if(curr_last->left == NULL && curr_last->right == NULL){
-                curr_last = curr_last->next;
-                continue;
-            }
-            if(curr_last->left || !curr_last->left && curr_last->right){
-                TreeLinkNode* x = curr_last->left?curr_last->left:curr_last->right;
-                if(head){
-                    curr->next = x;
-                    curr = x;
-                }
-                else{
-                    head = x;
-                    curr = head;
-                }
-            }
-            if(curr_last->right && curr_last->left){
-                curr->next = curr_last->right;
-                curr = curr_last->right;
-            }
-            curr_last = curr_last->next;
+        if(!last_curr){
+            if(!head) break;
+            last_curr = head;
+            head = tail = NULL;
         }
         else{
-            if(!head) break;
-            else{
-                curr_last = head;
-                head = curr = NULL;
+            if(last_curr->left || !last_curr->left && last_curr->right){
+                TreeLinkNode* x = last_curr->left?last_curr->left:last_curr->right;
+                if(head){
+                    tail->next = x;
+                    cout<<"connecting "<<tail->val<<" with "<<x->val<<endl;
+                    tail = x;
+                }
+                else{
+                    head = tail = x;
+                }
             }
+            if(last_curr->left && last_curr->right){
+                tail->next = last_curr->right;
+                cout<<"connecting "<<tail->val<<" with "<<last_curr->right->val<<endl;
+                tail = last_curr->right;
+            }
+            last_curr = last_curr->next;
         }
     }
 }
