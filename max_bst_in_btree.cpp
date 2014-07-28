@@ -7,6 +7,17 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+TreeNode* get_max_bst(TreeNode* root){
+    if(!root) return NULL;
+    int l_num = 0;
+    int r_num = 0;
+    int l_max = INT_MIN;
+    int r_max = INT_MIN;
+    int l_min = INT_MAX;
+    int r_min = INT_MAX;
+    
+}
+
 void preorder(TreeNode* root){
     if(!root) return;
     cout<<root->val<<" ";
