@@ -37,9 +37,40 @@ bool is_cousin(TreeNode* root, TreeNode* a, TreeNode* b){
     return false;
 }
 
-//vector<TreeNode*> get_cousins(TreeNode* root, TreeNode* a){
-//
-//}
+vector<TreeNode*> get_cousins(TreeNode* root, TreeNode* a){
+    vector<TreeNode*> res;
+    if(!a || !root || a==root) return res;
+    queue<TreeNode*> curr_l, next_l;
+    curr_l.push(root);
+    queue<TreeNode*> qs[2] = {curr_l, next_l};
+    int curr = 0;
+    bool this_level = false;
+    while(!qs[curr%2].empty()){
+        TreeNode* x = qs[curr%2].front();
+        qs[curr%2].pop();
+        if(x->left == a || x->right == a){
+            this_level = true;
+            continue;
+        }
+        if(x->left){
+            qs[(curr+1)%2].push(x->left);
+        }
+        if(x->right){
+            qs[(curr+1)%2].push(x->right);
+        }
+        if(qs[curr%2].empty()){
+            if(this_level){
+                while(!qs[(curr+1)%2].empty()){
+                    res.push_back(qs[(curr+1)%2].front());
+                    qs[(curr+1)%2].pop();
+                }
+                break;
+            }
+            curr++;
+        }
+    }
+    return res;
+}
 
 int main(){
     struct TreeNode n4(4);
@@ -59,5 +90,9 @@ int main(){
     n5.right = &n9;
     bool res = is_cousin(&n1, &n4, &n5);
     cout<<res<<endl;
+    vector<TreeNode*> res_v = get_cousins(&n1, &n9);
+    for(int i=0; i<res_v.size(); i++)
+        cout<<res_v[i]->val<<" ";
+    cout<<endl;
     return 0;
 }
