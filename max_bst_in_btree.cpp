@@ -7,15 +7,36 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+int search(TreeNode* curr, TreeNode*& max_bst, int& max_so_far, int min, int max, TreeNode*& child){
+    if(!curr) return 0;
+    if(min<curr->val && curr->val<max){
+        int l = search(curr->left, max_bst, max_so_far, min, curr->val, child);
+        TreeNode* left_child = l==0?NULL:child;
+        int r = search(curr->right, max_bst, max_so_far, curr->val, max, child);
+        TreeNode* right_child = r==0?NULL:child;
+        TreeNode* new_curr = new TreeNode(curr->val);
+        new_curr->left = left_child;
+        new_curr->right = right_child;
+        child = new_curr;
+        if(l+r+1>max_so_far){
+            max_so_far = l+r+1;
+            max_bst = new_curr;
+        }
+        return l+r+1;
+    }
+    else{
+        search(curr, max_bst, max_so_far, INT_MIN, INT_MAX, child);
+        return 0;
+    }
+}
+
 TreeNode* get_max_bst(TreeNode* root){
     if(!root) return NULL;
-    int l_num = 0;
-    int r_num = 0;
-    int l_max = INT_MIN;
-    int r_max = INT_MIN;
-    int l_min = INT_MAX;
-    int r_min = INT_MAX;
-    
+    TreeNode* res = NULL;
+    TreeNode* child = NULL;
+    int max_so_far = INT_MIN;
+    search(root, res, max_so_far, INT_MIN, INT_MAX, child);
+    return res;
 }
 
 void preorder(TreeNode* root){
@@ -45,7 +66,8 @@ int main(){
     n5.left = &n7;
     n5.right = &n8;
     n6.left = &n9;
-    preorder(&n0);
+    TreeNode* res = get_max_bst(&n0);
+    preorder(res);
     cout<<endl;
     return 0;
 }
