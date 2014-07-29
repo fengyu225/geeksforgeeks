@@ -44,9 +44,11 @@ char* lrs(char* s){
 }
 
 int main(){
-    char s0[] = "banana";
+    char s0[] = "bananaaabbbbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbb";
     char s1[] = "abc";
+    char s2[] = "banana";
     cout<<lrs(s0)<<endl;
-    cout<<lrs(s1)<<endl;
+    cout<<strcmp(lrs(s1),"\0")<<endl;
+    cout<<lrs(s2)<<endl;
     return 0;
 }
