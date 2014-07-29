@@ -41,14 +41,13 @@ void sort_k_heap(int arr[], int size, int k){
     }
     int heap_end = k;
     curr = k+1;
-    while(1){
+    while(curr_sorted+1<size){
         arr[++curr_sorted] = heap[0];
         if(curr<size){
             heap[0] = arr[curr];
             curr++;
         }
         else{
-            if(heap_end == 0) break;
             heap[0] = heap[heap_end--];
         }
         siftdown(heap,heap_end);
