@@ -40,6 +40,7 @@ char* lrs(char* s){
             strcpy(res,temp);
         }
     }
+    delete temp;
     return res;
 }
 
