@@ -29,7 +29,8 @@ char* longestUniqueSubstr(char* str){
 
 int main()
 {
-    char str[] = "ABDEFGABEF";
+    //char str[] = "ABDEFGABEF";
+    char str[] = "AAA";
     printf("The input string is %s \n", str);
     char* res =  longestUniqueSubstr(str);
     cout<<"The length of the longest non-repeating character substring is "<<res<<endl;
