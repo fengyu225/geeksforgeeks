@@ -73,11 +73,7 @@ int get_k_largest_max_heap(int arr[], int size, int k){
 
 int get_k_largest_oder_stat(int arr[], int size, int k){
     int left = 0, right = size-1, curr = 0;
-    while(left<=right){
-        if(left == right){
-            if(k==1) return arr[left];
-            else break;
-        }
+    while(left<right){
         curr = left;
         for(int i=left+1; i<=right; i++){
             if(arr[i]<arr[left])
@@ -93,7 +89,7 @@ int get_k_largest_oder_stat(int arr[], int size, int k){
             right = curr;
         }
     }
-    return INT_MIN;
+    return left==right && k==1?arr[left]:INT_MIN;
 }
 
 int main(){
