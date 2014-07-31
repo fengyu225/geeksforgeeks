@@ -14,6 +14,8 @@
 #include<utility>
 #include<iostream>
 #include<math.h>
+#include<assert.h>
+
 
 using std::vector;
 using std::string;
