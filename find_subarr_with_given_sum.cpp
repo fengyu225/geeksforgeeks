@@ -1,19 +1,20 @@
 #include "header.h"
 
 /*http://www.geeksforgeeks.org/find-subarray-with-given-sum/
+ * !!! array of non-negative integers
  */
 
 void find_subarr(int arr[], int size, int sum){
-    int start = 0, res = arr[0];
+    int start = 0, curr_sum = arr[0];
     for(int i=1; i<=size; i++){
-        while(res>sum && start<i-1){
-            res -= arr[start];
+        while(curr_sum>sum && start<i-1){
+            curr_sum -= arr[start];
             start++;
         }
-        if(res == sum)
+        if(curr_sum == sum)
             cout<<"start: "<<start<<" end "<<i-1<<endl;
         if(i<size)
-            res += arr[i];
+            curr_sum += arr[i];
     }
 }
 
