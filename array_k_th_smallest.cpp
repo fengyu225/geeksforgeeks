@@ -72,12 +72,38 @@ int get_k_largest_max_heap(int arr[], int size, int k){
 }
 
 int get_k_largest_oder_stat(int arr[], int size, int k){
-    
+    int left = 0, right = size-1, curr = 0;
+    while(left<=right){
+        if(left == right){
+            if(k==1) return arr[left];
+            else break;
+        }
+        curr = left;
+        for(int i=left+1; i<=right; i++){
+            if(arr[i]<arr[left])
+                swap(arr,i,++curr);
+        }
+        if(curr-left+1 == k) return arr[left];
+        if(k>curr-left+1){
+            k -= curr-left+1;
+            left = curr+1;
+        }
+        else{
+            left++;
+            right = curr;
+        }
+    }
+    return INT_MIN;
 }
 
 int main(){
     int arr[] = {1, 23, 12, 9, 30, 2, 50};
-    int res = get_k_largest_max_heap(arr, sizeof(arr)/sizeof(arr[0]), 7);
-    cout<<res<<endl;
+    cout<<get_k_largest_oder_stat(arr, sizeof(arr)/sizeof(arr[0]), 1)<<endl;
+    cout<<get_k_largest_oder_stat(arr, sizeof(arr)/sizeof(arr[0]), 2)<<endl;
+    cout<<get_k_largest_oder_stat(arr, sizeof(arr)/sizeof(arr[0]), 3)<<endl;
+    cout<<get_k_largest_oder_stat(arr, sizeof(arr)/sizeof(arr[0]), 4)<<endl;
+    cout<<get_k_largest_oder_stat(arr, sizeof(arr)/sizeof(arr[0]), 5)<<endl;
+    cout<<get_k_largest_oder_stat(arr, sizeof(arr)/sizeof(arr[0]), 6)<<endl;
+    cout<<get_k_largest_oder_stat(arr, sizeof(arr)/sizeof(arr[0]), 7)<<endl;
     return 0;
 }
