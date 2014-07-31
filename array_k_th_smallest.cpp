@@ -71,7 +71,9 @@ int get_k_largest_max_heap(int arr[], int size, int k){
     return x;
 }
 
-
+int get_k_largest_oder_stat(int arr[], int size, int k){
+    
+}
 
 int main(){
     int arr[] = {1, 23, 12, 9, 30, 2, 50};
