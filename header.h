@@ -7,6 +7,7 @@
 #include<string>
 #include<queue>
 #include<stack>
+#include<deque>
 #include<unordered_map>
 #include<unordered_set>
 #include<map>
@@ -23,6 +24,7 @@ using std::string;
 using std::queue;
 using std::list;
 using std::stack;
+using std::deque;
 using std::unordered_map;
 using std::unordered_set;
 using std::map;

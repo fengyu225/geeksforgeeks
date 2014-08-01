@@ -21,26 +21,32 @@
 
 vector<int> sliding_window_max(int arr[], int size, int k){
     vector<int> res;
-    int max = INT_MIN;
-    int start = 0, end = k-1;
-    for(int i=start; i<=end && i<size; i++){
-        max = std::max(arr[i], max);
-        mp[arr[i]]++;
+    int start = 0, end = 0;
+    deque<int> q;
+    for(;end<k;end++){
+        while(!q.empty() && arr[q.back()]<=arr[end]) q.pop_back();
+        q.push_back(end);
+        //cout<<"pushing "<<arr[end]<<endl;
     }
-    res.push_back(max);
-    unordered_map<int,int> mp;
-    if(k>size)
-        return res;
+    //cout<<endl;
+    end=k;
     while(end<size){
-        mp[arr[end]]++;
-        
+        res.push_back(arr[q.front()]);
+        while(!q.empty() && arr[q.back()]<=arr[end]) q.pop_back();
+        q.push_back(end);
+        while(!q.empty() && q.front()<end-k) q.pop_front();
+        //cout<<"pushing "<<arr[end]<<endl;
+        start++;
+        end++;
+    }
+    res.push_back(arr[q.front()]);
     return res;
 }
 
 int main(){
     int arr[] = {1, 3, -1,-3, 5, 3, 6, 7};
     int size = sizeof(arr)/sizeof(arr[0]);
-    vector<int> res = sliding_window_max(arr, int size, 3);
+    vector<int> res = sliding_window_max(arr, size, 3);
     for(int i=0; i<res.size(); i++)
         cout<<res[i]<<" ";
     cout<<endl;
