@@ -3,6 +3,7 @@
 #include<stdbool.h>
 #include<string.h>
 #include<vector>
+#include<list>
 #include<string>
 #include<queue>
 #include<stack>
@@ -20,6 +21,7 @@
 using std::vector;
 using std::string;
 using std::queue;
+using std::list;
 using std::stack;
 using std::unordered_map;
 using std::unordered_set;
