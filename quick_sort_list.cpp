@@ -23,11 +23,11 @@ void sort(ListNode* head, ListNode*& first, ListNode*& second){
         first = second = NULL;
         return;
     }
-    if(head->next == NULL){
-        first = second = head;
-        second->next = NULL;
-        return;
-    }
+//    if(head->next == NULL){
+//        first = second = head;
+//        second->next = NULL;
+//        return;
+//    }
     ListNode* ls = NULL, *le = NULL, *rs = NULL, *re = NULL;
     ListNode* curr = head->next;
     head->next = NULL;
