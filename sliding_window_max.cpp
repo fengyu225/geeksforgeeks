@@ -21,22 +21,18 @@
 
 vector<int> sliding_window_max(int arr[], int size, int k){
     vector<int> res;
-    int start = 0, end = 0;
+    int end = 0;
     deque<int> q;
     for(;end<k;end++){
         while(!q.empty() && arr[q.back()]<=arr[end]) q.pop_back();
         q.push_back(end);
-        //cout<<"pushing "<<arr[end]<<endl;
     }
-    //cout<<endl;
     end=k;
     while(end<size){
         res.push_back(arr[q.front()]);
         while(!q.empty() && arr[q.back()]<=arr[end]) q.pop_back();
         q.push_back(end);
         while(!q.empty() && q.front()<end-k) q.pop_front();
-        //cout<<"pushing "<<arr[end]<<endl;
-        start++;
         end++;
     }
     res.push_back(arr[q.front()]);
