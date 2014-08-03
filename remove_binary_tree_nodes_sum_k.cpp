@@ -11,24 +11,23 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-bool delete_n(TreeNode* curr, int k){
+bool delete_n(TreeNode* curr, int curr_sum, int k){
     if(!curr)
-        return k<=0;
-    bool l = delete_n(curr->left,k-curr->val);
-    bool r = delete_n(curr->right,k-curr->val);
-    if(!l && !r){
+        return curr_sum>=k;
+    bool l_res = delete_n(curr->left,curr_sum+curr->val,k);
+    bool r_res = delete_n(curr->right,curr_sum+curr->val,k);
+    if(!l_res) curr->left = NULL;
+    if(!r_res) curr->right = NULL;
+    if(!l_res && !r_res){
         delete curr;
         return false;
     }
-    if(!l)
-        curr->left = NULL;
-    if(!r)
-        curr->right = NULL;
     return true;
 }
 
 TreeNode* delete_nodes(TreeNode* root, int k){
-    bool res = delete_n(root,k);
+    if(!root) return NULL;
+    bool res = delete_n(root, 0, k);
     return res?root:NULL;
 }
 
