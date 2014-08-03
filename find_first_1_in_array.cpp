@@ -1,7 +1,14 @@
 #include "header.h"
 
 int get_first_1(int arr[], int l, int r, int size){
-
+    while(l<r){
+        int m = (l+r)/2;
+        if(arr[m] == 1)
+            r=m;
+        else
+            l=m+1;
+    }
+    return l==r && arr[l]==1?l:-1;
 }
 
 int main(){
