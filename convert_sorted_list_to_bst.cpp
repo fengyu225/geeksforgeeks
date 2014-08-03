@@ -14,14 +14,31 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+TreeNode* convert(ListNode*& head, int start, int end){
+    if(start>end) return NULL;
+    int mid = (start+end)/2;
+    TreeNode* l_root = convert(head,start,mid-1);
+    TreeNode* curr_root = new TreeNode(head->val);
+    curr_root->left = l_root;
+    head = head->next;
+    curr_root->right = convert(head, mid+1, end);
+    return curr_root;
+}
 
 TreeNode* sortedListToBST(ListNode* head) {
+    int n = 0;
+    ListNode* curr = head;
+    while(curr){
+        n++;
+        curr = curr->next;
+    }
+    return convert(head, 0, n-1);
 }
 
 void pre_order(TreeNode* root){
     if(!root) return;
-    printf("%d ", root->val);
     pre_order(root->left);
+    printf("%d ", root->val);
     pre_order(root->right);
 }
 
