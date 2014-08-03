@@ -35,8 +35,8 @@ void rotate(int matrix[], int row, int col){
 }
 
 int main(){
-    int matrix[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    rotate(matrix, 3, 3);
+    int matrix[] = {1, 2, 3, 4, 5, 6, 7, 8};
+    rotate(matrix, 2, 4);
     for(int i=0; i<sizeof(matrix)/sizeof(matrix[0]); i++)
         cout<<matrix[i]<<" ";
     cout<<endl;
