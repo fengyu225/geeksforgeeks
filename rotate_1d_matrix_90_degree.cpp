@@ -20,9 +20,11 @@ void rotate(int matrix[], int row, int col){
     int size = row*col;
     while(curr<size){
         cycle_start = curr;
+        cout<<"cycle_start: "<<cycle_start<<endl;
         int last_val = matrix[curr];
         do{
-            next = get_next(curr,row);
+            next = get_next(curr,col);
+            cout<<"curr: "<<curr<<" next: "<<next<<endl;
             int x = matrix[next];
             matrix[next] = last_val;
             last_val = x;
@@ -37,8 +39,8 @@ void rotate(int matrix[], int row, int col){
 int main(){
     int matrix[] = {1, 2, 3, 4, 5, 6, 7, 8};
     rotate(matrix, 2, 4);
-    for(int i=0; i<sizeof(matrix)/sizeof(matrix[0]); i++)
-        cout<<matrix[i]<<" ";
-    cout<<endl;
+//    for(int i=0; i<sizeof(matrix)/sizeof(matrix[0]); i++)
+//        cout<<matrix[i]<<" ";
+//    cout<<endl;
     return 0;
 }
