@@ -79,10 +79,31 @@ bool is_palindrome(ListNode* root){
     return true;
 }
 
+bool is_palindrome_recursive(ListNode* head, ListNode*& last, int size){
+    if(!head || size == 0){
+        last = NULL;
+        return true;
+    }
+    if(size == 1){
+        last = head;
+        return true;
+    }
+    if(size == 2){
+        last = head->next;
+        return head->next && head->val == head->next->val;
+    }
+    ListNode* l = NULL;
+    bool res = is_palindrome_recursive(head->next,l,size-2);
+    if(!res) return false;
+    last = l->next;
+    return head->val == l->next->val;
+}
+
 int main(){
-    int arr[] = {0, 1, 2, 9, 2, 1, 0};
+    int arr[] = {0, 1, 2, 1, 1, 0};
     ListNode* l = create_list(arr, sizeof(arr)/sizeof(arr[0]));
-    bool r = is_palindrome(l);
+    ListNode* last = NULL;
+    bool r = is_palindrome_recursive(l, last, sizeof(arr)/sizeof(arr[0]));
     printf("%s\n", r?"true":"false");
     return 0;
 }
