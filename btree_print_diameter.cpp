@@ -6,8 +6,15 @@ struct TreeNode {
  TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+void get_diameter_helper(TreeNode* root, vector<TreeNode*>& left_longest_path, vector<TreeNode*>& right_longest_path, vector<TreeNode*>& res){
+
+}
+
 vector<TreeNode*> get_diameter(TreeNode* root){
     vector<TreeNode*> res;
+    vector<TreeNode*> left_longest_path;
+    vector<TreeNode*> right_longest_path;
+    get_diameter_helper(root,left_longest_path,right_longest_path,res);
     return res;
 }
 
