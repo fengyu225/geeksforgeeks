@@ -6,27 +6,9 @@ struct TreeNode {
  TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-int calc_diameter(TreeNode* curr, int &l_max, int& r_max){
-    if(!curr){
-        l_max=r_max=0;
-        return 0;
-    }
-    int ll_max=0;
-    int lr_max=0;
-    int l = calc_diameter(curr->left,ll_max,lr_max);
-    int rl_max=0;
-    int rr_max=0;
-    int r = calc_diameter(curr->right,rl_max,rr_max);
-    l_max = std::max(ll_max,lr_max)+1;
-    r_max = std::max(rl_max,rr_max)+1;
-    return std::max(l_max+r_max-1, std::max(l,r));
-}
-
-int get_diameter(TreeNode* root){
-    if(!root) return 0;
-    int l_max=0,r_max=0;
-    int res = calc_diameter(root,l_max,r_max);
-    return res; 
+vector<TreeNode*> get_diameter(TreeNode* root){
+    vector<TreeNode*> res;
+    return res;
 }
 
 int main(){
@@ -41,7 +23,10 @@ int main(){
     n2.left = &n4;
     n2.right = &n5;
     n3.right = &n7;
-    std::cout<<get_diameter(&n1)<<std::endl;
+    vector<TreeNode*> res = get_diameter(&n1);
+    for(int i=0; i<res.size(); i++)
+        cout<<res[i]->val<<" ";
+    cout<<endl;
     return 0;
 }
     
