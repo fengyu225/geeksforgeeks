@@ -8,38 +8,8 @@ struct TreeNode {
 };
 
 vector<vector<int> > zigzagLevelOrder(TreeNode *root) {
-    bool left_to_right = true;
     vector<vector<int> > res;
-    if(!root) return res;
-    stack<TreeNode*> curr_level,next_level;
-    stack<TreeNode*> s_arr[2] = {curr_level,next_level};
-    int curr = 0;
-    vector<int> v;
-    s_arr[curr].push(root);
-    while(!s_arr[curr].empty()){
-        TreeNode* top_n = s_arr[curr].top();
-        s_arr[curr].pop();
-        v.push_back(top_n->val);
-        if(left_to_right){
-            if(top_n->left)
-                s_arr[(curr+1)%2].push(top_n->left);
-            if(top_n->right)
-                s_arr[(curr+1)%2].push(top_n->right);
-        }
-        else{
-            if(top_n->right)
-                s_arr[(curr+1)%2].push(top_n->right);
-            if(top_n->left)
-                s_arr[(curr+1)%2].push(top_n->left);
-        }
-        if(s_arr[curr].empty()){
-            res.push_back(v);
-            v.clear();
-            left_to_right = !left_to_right;
-            curr = (curr+1)%2;
-        }
-    }
-    return res;
+
 }
 
 int main(){
