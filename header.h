@@ -18,21 +18,21 @@
 #include<math.h>
 #include<assert.h>
 
-
-using std::vector;
-using std::string;
-using std::queue;
-using std::list;
-using std::stack;
-using std::deque;
-using std::unordered_map;
-using std::unordered_set;
-using std::map;
-using std::sort;
-using std::pair;
-using std::make_pair;
-using std::max;
-using std::priority_queue;
-using std::cin;
-using std::cout;
-using std::endl;
+using namespace std;
+//using std::vector;
+//using std::string;
+//using std::queue;
+//using std::list;
+//using std::stack;
+//using std::deque;
+//using std::unordered_map;
+//using std::unordered_set;
+//using std::map;
+//using std::sort;
+//using std::pair;
+//using std::make_pair;
+//using std::max;
+//using std::priority_queue;
+//using std::cin;
+//using std::cout;
+//using std::endl;
